@@ -74,3 +74,26 @@ button.delete {
   margin: -8px 0 16px;
   color: #777;
 }
+
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.filters button {
+  background: #e8eef7;
+  color: #2d3e50;
+  padding: 6px 12px;
+}
+
+.filters button.active {
+  background: #2d7ff9;
+  color: #fff;
+}
+
+#task-count {
+  margin: 12px 0 0;
+  color: #777;
+  font-size: 14px;
+}
