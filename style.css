@@ -12,3 +12,60 @@ body {
   padding: 24px;
   border-radius: 8px;
 }
+
+h1 {
+  margin-top: 0;
+  color: #2d3e50;
+}
+
+#task-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #2d7ff9;
+  color: #fff;
+  cursor: pointer;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+#task-list li span {
+  flex: 1;
+}
+
+#task-list li.done span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+button.delete {
+  background: transparent;
+  color: #c0392b;
+  padding: 4px 8px;
+}
