@@ -5,6 +5,17 @@ const list = document.getElementById("task-list");
 
 let tasks = [];
 
+function toggleTask(id) {
+  const task = tasks.find((t) => t.id === id);
+  task.done = !task.done;
+  render();
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter((t) => t.id !== id);
+  render();
+}
+
 function render() {
   list.innerHTML = "";
   tasks.forEach((task) => {
