@@ -69,3 +69,8 @@ button.delete {
   color: #c0392b;
   padding: 4px 8px;
 }
+
+.subtitle {
+  margin: -8px 0 16px;
+  color: #777;
+}
