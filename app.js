@@ -2,6 +2,8 @@
 const form = document.getElementById("task-form");
 const input = document.getElementById("task-input");
 const list = document.getElementById("task-list");
+const count = document.getElementById("task-count");
+const filterButtons = document.querySelectorAll(".filters button");
 
 const STORAGE_KEY = "todolist.tasks";
 let tasks = loadTasks();
@@ -18,6 +20,8 @@ function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 }
 
+let currentFilter = "all";
+
 function toggleTask(id) {
   const task = tasks.find((t) => t.id === id);
   task.done = !task.done;
@@ -31,7 +35,13 @@ function deleteTask(id) {
 
 function render() {
   list.innerHTML = "";
-  tasks.forEach((task) => {
+  const visible = tasks.filter((task) => {
+    if (currentFilter === "active") return !task.done;
+    if (currentFilter === "completed") return task.done;
+    return true;
+  });
+
+  visible.forEach((task) => {
     const li = document.createElement("li");
     if (task.done) li.classList.add("done");
 
@@ -52,6 +62,9 @@ function render() {
     li.append(checkbox, span, del);
     list.appendChild(li);
   });
+
+  const left = tasks.filter((t) => !t.done).length;
+  count.textContent = left + (left === 1 ? " task" : " tasks") + " left";
   save();
 }
 
@@ -62,6 +75,15 @@ form.addEventListener("submit", (event) => {
   tasks.push({ id: Date.now(), text: text, done: false });
   input.value = "";
   render();
+});
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    currentFilter = button.dataset.filter;
+    filterButtons.forEach((b) => b.classList.remove("active"));
+    button.classList.add("active");
+    render();
+  });
 });
 
 render();
