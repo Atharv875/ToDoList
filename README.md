@@ -7,9 +7,12 @@ The app is intentionally small: the focus of the project is the **Git / GitHub
 workflow** used to build it.
 
 ## Features
-- Add tasks
+- Add tasks (empty or blank tasks are ignored)
 - Mark tasks as complete
 - Delete tasks
+- Filter by All / Active / Completed
+- Counter of remaining tasks
+- Tasks are saved in the browser (`localStorage`) and survive a reload
 
 ## How to run
 No installation needed. Clone the repository and open `index.html` in any browser.
