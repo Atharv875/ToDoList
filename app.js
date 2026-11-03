@@ -3,7 +3,20 @@ const form = document.getElementById("task-form");
 const input = document.getElementById("task-input");
 const list = document.getElementById("task-list");
 
-let tasks = [];
+const STORAGE_KEY = "todolist.tasks";
+let tasks = loadTasks();
+
+function loadTasks() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+}
 
 function toggleTask(id) {
   const task = tasks.find((t) => t.id === id);
@@ -39,6 +52,7 @@ function render() {
     li.append(checkbox, span, del);
     list.appendChild(li);
   });
+  save();
 }
 
 form.addEventListener("submit", (event) => {
