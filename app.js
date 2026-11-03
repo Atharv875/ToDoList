@@ -43,7 +43,8 @@ function render() {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const text = input.value;
+  const text = input.value.trim();
+  if (text === "") return; // ignore empty or blank tasks
   tasks.push({ id: Date.now(), text: text, done: false });
   input.value = "";
   render();
