@@ -1,0 +1,8 @@
+#!/bin/sh
+# pre-commit hook (Session 29): block commits that add a TODO marker.
+# Hook scripts and Markdown docs are excluded because they describe the rule.
+if git diff --cached -- . ':(exclude).githooks' ':(exclude)*.md' | grep -q "^+.*TODO"; then
+  echo "pre-commit: Remove TODO first (found in staged changes)."
+  exit 1
+fi
+exit 0

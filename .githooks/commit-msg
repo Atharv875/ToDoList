@@ -1,0 +1,12 @@
+#!/bin/sh
+# commit-msg hook (Session 29): enforce "type: description" messages.
+# Allowed types: feat fix docs style refactor test chore
+# Git's own Merge/Revert messages are also accepted.
+msg=$(head -n 1 "$1")
+if echo "$msg" | grep -Eq '^(feat|fix|docs|style|refactor|test|chore)(\([a-z0-9-]+\))?: .{3,}' \
+   || echo "$msg" | grep -Eq '^(Merge|Revert) '; then
+  exit 0
+fi
+echo "commit-msg: message must look like 'feat: add task input'"
+echo "            allowed types: feat fix docs style refactor test chore"
+exit 1
